@@ -1,3 +1,3 @@
-return {
-    "nvim-lua/plenary.nvim",
+return { -- for plugins that not using config
+	"nvim-lua/plenary.nvim",
 }

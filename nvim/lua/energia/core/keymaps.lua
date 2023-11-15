@@ -1,40 +1,40 @@
---  keymap 
---vim.keymap.set("n", "<leader>`", "<cmd>Ex<cr>")
+-- set leader key to space
+vim.g.mapleader = " "
 
-vim.keymap.set("n", ";", ":")
-vim.keymap.set("n", "q", "<cmd>q<cr>")
+local keymap = vim.keymap -- for conciseness
 
-vim.keymap.set("n", "<C-s>", ":w<CR>")
+-- normal mode
+-- keymap.set("n", "<leader>`", "<cmd>Ex<cr>")
+keymap.set("n", "q", "<cmd>q<cr>") -- quit
+keymap.set("n", "J", "mzJ`z")
+keymap.set("n", "n", "nzzzv")
+keymap.set("n", "N", "Nzzzv")
 
-vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
+keymap.set("n", "<C-a>", "ggVG") -- select all
+keymap.set("n", "<C-s>", ":w<CR>") -- quick save
+keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>") -- tmux fzf
+keymap.set("n", "<C-d>", "<C-d>zz")
+keymap.set("n", "<C-u>", "<C-u>zz")
 
-vim.keymap.set("n", "q", "<cmd>q<cr>")
+keymap.set("n", "<leader>Y", [["+Y]])
+keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
-vim.keymap.set("i", "<C-c>", "<Esc>")
+-- insert mode
+keymap.set("i", "<C-h>", "<Left>")
+keymap.set("i", "<C-j>", "<Down>")
+keymap.set("i", "<C-k>", "<Up>")
+keymap.set("i", "<C-l>", "<Right>")
 
-vim.keymap.set("i", "<C-h>", "<Left>")
-vim.keymap.set("i", "<C-j>", "<Down>")
-vim.keymap.set("i", "<C-k>", "<Up>")
-vim.keymap.set("i", "<C-l>", "<Right>")
+-- visual mode
+keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+-- idk
+keymap.set("x", "<leader>p", [["_dP]])
 
--- greatest remap ever
-vim.keymap.set("x", "<leader>p", [["_dP]])
-
--- next greatest remap ever : asbjornHaland
-vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
-vim.keymap.set("n", "<leader>Y", [["+Y]])
-
-vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
-vim.keymap.set("n", "J", "mzJ`z")
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
-vim.keymap.set("n", "n", "nzzzv")
-vim.keymap.set("n", "N", "Nzzzv")
-vim.keymap.set("n", "<leader><leader>", function()
-	vim.cmd("so")
-end)
+-- combine normal and visual
+keymap.set({ "v", "i" }, "<C-c>", "<Esc>")
+keymap.set({ "n", "v" }, "<leader>d", [["_d]])
+keymap.set({ "n", "v" }, ";", ":")
+keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 -- end keymap
